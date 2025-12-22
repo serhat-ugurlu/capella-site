@@ -1,0 +1,1638 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UAV Team — Single Page</title>
+  <meta name="description" content="UAV Team — Home, Team, Sponsors, Media, Contact" />
+  <style>
+    /* -------------------------
+       THEME (from your logo)
+    -------------------------- */
+
+#snow{
+  position: fixed;
+  inset: 0;
+  z-index: -1;          /* body glow katmanlarının üstünde, içeriklerin altında */
+  pointer-events: none;
+  opacity: 0.55;        /* yoğunluk hissini buradan kontrol et */
+}
+
+#sponsors .sectionHead{
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+#sponsors .sectionTitle{
+  text-shadow: 0 0 30px rgba(234,142,49,.18);
+}
+#media .sectionHead{
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 28px;
+}
+#media .sectionTitle{
+  text-shadow: 0 0 28px rgba(235,228,225,.15);
+}
+
+#mission .sectionHead{
+  justify-content: center;
+  text-align: center;
+}
+
+#mission .sectionTitle{
+  margin-left: auto;
+  margin-right: auto;
+}
+#mission .sectionTitle{
+  text-shadow: 0 0 32px rgba(235,228,225,.18);
+}
+#contact .sectionHead{
+  justify-content: center;
+  text-align: center;
+}
+
+#contact .sectionHead > div{
+  max-width: 720px;
+}
+
+#contact .sectionDesc{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+
+/* -------------------------
+   MISSION & VISION
+-------------------------- */
+.sectionHeadCenter{
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.mvGrid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+.mvCard{
+  padding: 22px;
+  border-radius: 22px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+  border: 1px solid rgba(235,228,225,.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.mvCard::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:
+    radial-gradient(520px 280px at 20% 15%, rgba(40,73,148,.20), transparent 60%),
+    radial-gradient(520px 280px at 80% 85%, rgba(234,142,49,.14), transparent 60%),
+    radial-gradient(520px 280px at 90% 20%, rgba(173,36,45,.14), transparent 60%);
+  opacity: .9;
+  pointer-events:none;
+}
+
+.mvCard > *{
+  position: relative;
+}
+
+.mvTop{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.mvIcon{
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border: 1px solid rgba(235,228,225,.14);
+  background: rgba(255,255,255,.05);
+  box-shadow: 0 14px 40px rgba(0,0,0,.35);
+  font-size: 16px;
+}
+
+.mvIconMission{
+  background: linear-gradient(135deg, rgba(40,73,148,.22), rgba(255,255,255,.04));
+}
+
+.mvIconVision{
+  background: linear-gradient(135deg, rgba(234,142,49,.18), rgba(173,36,45,.14));
+}
+
+.mvTitle{
+  margin: 0;
+  font-size: 16px;
+  letter-spacing: .02em;
+}
+
+.mvText{
+  margin: 0;
+  color: rgba(235,228,225,.78);
+  font-size: 14px;
+  line-height: 1.65;
+  max-width: 70ch;
+}
+
+/* responsive */
+@media (max-width: 900px){
+  .mvGrid{ grid-template-columns: 1fr; }
+}
+
+
+
+
+
+
+
+
+.newYearNote{
+  display: flex;
+  flex-direction: column;
+  margin-right: 14px;
+  padding-right: 14px;
+  border-right: 1px solid rgba(235,228,225,.12);
+  text-align: right;
+}
+
+.newYearNote span{
+  font-size: 12px;
+  letter-spacing: .12em;
+  color: rgba(235,228,225,.85);
+  text-transform: uppercase;
+}
+
+.newYearNote small{
+  font-size: 11px;
+  color: rgba(235,228,225,.55);
+}
+
+.newYearNote span{
+  background: linear-gradient(
+    90deg,
+    rgba(235,228,225,.6),
+    rgba(234,142,49,.9),
+    rgba(235,228,225,.6)
+  );
+  background-size: 200%;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: glowText 6s ease-in-out infinite;
+}
+
+@keyframes glowText{
+  0%{ background-position: 0%; }
+  50%{ background-position: 100%; }
+  100%{ background-position: 0%; }
+}
+
+
+
+
+
+
+
+
+    :root{
+      --bg: #060606;
+      --panel: rgba(255,255,255,.06);
+      --panel-2: rgba(255,255,255,.08);
+      --text: #EBE4E1;
+      --muted: rgba(235,228,225,.72);
+
+      --red: #AD242D;
+      --blue: #284994;
+      --orange: #EA8E31;
+
+      --border: rgba(235,228,225,.14);
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+
+      --max: 1180px;
+
+      --focus: 0 0 0 3px rgba(40,73,148,.25), 0 0 0 1px rgba(234,142,49,.22);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+  color: var(--text);
+  line-height: 1.55;
+  overflow-x: hidden;
+
+  /* base: dark + vertical falloff (no seams) */
+  background:
+    linear-gradient(180deg,
+      rgba(6,6,6,1) 0%,
+      rgba(6,6,6,.92) 35%,
+      rgba(6,6,6,.95) 65%,
+      rgba(6,6,6,1) 100%
+    );
+}
+body::before{
+  content:"";
+  position: fixed;
+  inset: -20vh -10vw;   /* taşma veriyoruz ki kenarlarda kesilmesin */
+  z-index: -2;
+  pointer-events: none;
+
+  background:
+    radial-gradient(1200px 800px at 15% 12%, rgba(40,73,148,.30), transparent 60%),
+    radial-gradient(1100px 780px at 85% 18%, rgba(173,36,45,.26), transparent 60%),
+    radial-gradient(900px 700px at 55% 92%, rgba(234,142,49,.18), transparent 65%),
+    radial-gradient(800px 650px at 10% 85%, rgba(173,36,45,.14), transparent 70%);
+
+  filter: blur(2px) saturate(1.05);
+  transform: translateZ(0);
+}
+
+body::after{
+  content:"";
+  position: fixed;
+  inset: -20vh -20vw;
+  z-index: -2;
+  pointer-events: none;
+  transform: translateZ(0);
+}
+
+/* Layer 1: larger, softer blobs */
+body::before{
+  background:
+    radial-gradient(900px 700px at 15% 25%, rgba(40,73,148,.28), transparent 62%),
+    radial-gradient(1000px 800px at 85% 18%, rgba(173,36,45,.24), transparent 64%),
+    radial-gradient(900px 700px at 60% 92%, rgba(234,142,49,.18), transparent 66%),
+    radial-gradient(800px 650px at 10% 85%, rgba(173,36,45,.14), transparent 70%);
+  filter: blur(18px) saturate(1.05);
+  opacity: .95;
+  animation: glowDriftA 22s ease-in-out infinite alternate;
+}
+
+/* Layer 2: subtle streaks + extra depth */
+body::after{
+  z-index: -3;
+  background:
+    radial-gradient(700px 520px at 35% 35%, rgba(40,73,148,.20), transparent 62%),
+    radial-gradient(760px 560px at 70% 55%, rgba(173,36,45,.18), transparent 64%),
+    radial-gradient(620px 480px at 55% 80%, rgba(234,142,49,.14), transparent 66%),
+    linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.85));
+  filter: blur(28px) saturate(1.05);
+  opacity: .90;
+  animation: glowDriftB 28s ease-in-out infinite alternate;
+}
+
+@keyframes glowDriftA{
+  0%   { transform: translate3d(0px, 0px, 0) scale(1.00); }
+  50%  { transform: translate3d(-18px, 10px, 0) scale(1.02); }
+  100% { transform: translate3d(14px, -10px, 0) scale(1.01); }
+}
+
+@keyframes glowDriftB{
+  0%   { transform: translate3d(0px, 0px, 0) scale(1.00); }
+  50%  { transform: translate3d(16px, -12px, 0) scale(1.03); }
+  100% { transform: translate3d(-12px, 14px, 0) scale(1.01); }
+}
+
+
+
+
+
+
+
+
+
+    a{ color: inherit; text-decoration: none; }
+    .container{
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* subtle animated grid */
+    .grid{
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .28;
+      background:
+        linear-gradient(to right, rgba(235,228,225,.08) 1px, transparent 1px) 0 0 / 72px 72px,
+        linear-gradient(to bottom, rgba(235,228,225,.06) 1px, transparent 1px) 0 0 / 72px 72px;
+      mask-image: linear-gradient(180deg, black 0%, black 55%, transparent 100%);
+
+      animation: drift 10s linear infinite;
+    }
+    @keyframes drift {
+      from { transform: translate3d(0,0,0); }
+      to   { transform: translate3d(-36px,-36px,0); }
+    }
+
+    /* -------------------------
+       NAVBAR
+    -------------------------- */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(6,6,6,.55);
+      border-bottom: 1px solid rgba(235,228,225,.10);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 180px;
+    }
+    .brandMark{
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(
+    135deg,
+    rgba(233, 231, 231, 0.9),
+    rgba(228, 229, 231, 0.9)
+  );
+
+  box-shadow: 0 12px 30px rgba(0,0,0,.45);
+}
+    .brandMark img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+    .brandTitle{
+      display:flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .brandTitle strong{ font-size: 14px; letter-spacing: .08em; }
+    .brandTitle span{ font-size: 12px; color: var(--muted); }
+
+    .navLinks{
+      display:flex;
+      gap: 6px;
+      align-items:center;
+      padding: 6px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(235,228,225,.10);
+      border-radius: 999px;
+    }
+    .navLinks a{
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: rgba(235,228,225,.80);
+      position: relative;
+      transition: transform .2s ease, background .2s ease, color .2s ease;
+      outline: none;
+    }
+    .navLinks a:hover{
+      color: var(--text);
+      background: rgba(255,255,255,.05);
+      transform: translateY(-1px);
+    }
+    .navLinks a.active{
+      color: var(--text);
+      background:
+        linear-gradient(135deg, rgba(173,36,45,.26), rgba(40,73,148,.20));
+      border: 1px solid rgba(235,228,225,.12);
+      box-shadow: 0 12px 32px rgba(0,0,0,.35);
+    }
+    .navCta{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 180px;
+      justify-content: flex-end;
+    }
+    .btn{
+      border: 1px solid rgba(235,228,225,.14);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.08);
+      border-color: rgba(235,228,225,.22);
+    }
+    .btnPrimary{
+      border: 1px solid rgba(234,142,49,.55);
+      background:
+        linear-gradient(135deg, rgba(234,142,49,.22), rgba(173,36,45,.18));
+    }
+    .btn:focus-visible{ box-shadow: var(--focus); }
+
+    /* -------------------------
+       SECTIONS + HEADINGS
+    -------------------------- */
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    section{
+      scroll-margin-top: 90px;
+      padding: 72px 0;
+    }
+    .sectionHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 18px;
+    }
+    #team .sectionHead{
+  justify-content: center;
+  text-align: center;
+}
+
+#team .sectionHead > div{
+  max-width: 700px;   /* satır çok uzamasın */
+}
+
+#team .sectionDesc{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+
+    .sectionTitle{
+      margin:0;
+      font-size: clamp(20px, 2.2vw, 28px);
+      letter-spacing: .02em;
+    }
+    .sectionDesc{
+      margin: 6px 0 0 0;
+      color: var(--muted);
+      max-width: 60ch;
+      font-size: 14px;
+    }
+    .tag{
+      font-size: 12px;
+      color: rgba(235,228,225,.78);
+      border: 1px solid rgba(235,228,225,.12);
+      background: rgba(255,255,255,.04);
+      padding: 7px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .card{
+      border: 1px solid rgba(235,228,225,.12);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    /* -------------------------
+       HERO (Home)
+    -------------------------- */
+    .hero{
+      padding: 22px 0 0 0;
+    }
+    .heroShell{
+      border: 1px solid rgba(235,228,225,.12);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 30px 90px rgba(0,0,0,.65);
+      position: relative;
+      background: rgba(255,255,255,.03);
+    }
+    .heroVideo{
+      width: 100%;
+      height: min(68vh, 560px);
+      display:block;
+      object-fit: cover;
+      filter: contrast(1.05) saturate(1.05);
+    }
+    .heroOverlay{
+      position:absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(6,6,6,.78), rgba(6,6,6,.28) 60%, rgba(6,6,6,.72)),
+        radial-gradient(600px 400px at 25% 35%, rgba(40,73,148,.20), transparent 60%),
+        radial-gradient(520px 420px at 40% 55%, rgba(173,36,45,.18), transparent 60%);
+      display:flex;
+      align-items: flex-end;
+    }
+    .heroContent{
+      padding: 28px;
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 22px;
+      align-items:end;
+    }
+    .heroTitle{
+      margin:0;
+      font-size: clamp(28px, 4vw, 52px);
+      line-height: 1.05;
+      letter-spacing: .02em;
+    }
+    .heroTitle span{
+      background: linear-gradient(90deg, rgba(235,228,225,.96), rgba(235,228,225,.70));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .heroSubtitle{
+      margin: 10px 0 0 0;
+      color: rgba(235,228,225,.85);
+      max-width: 70ch;
+      font-size: 14px;
+    }
+    .heroRight{
+      display:flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .pill{
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(235,228,225,.14);
+      background: rgba(255,255,255,.04);
+      font-size: 12px;
+      color: rgba(235,228,225,.85);
+    }
+    .pill b{ color: var(--text); }
+    .accentLine{
+      height: 2px;
+      width: 100%;
+      background: linear-gradient(90deg, rgba(173,36,45,.0), rgba(173,36,45,.65), rgba(40,73,148,.55), rgba(234,142,49,.45), rgba(234,142,49,.0));
+    }
+
+    /* quick stats */
+    .stats{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .stat{
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(235,228,225,.10);
+      background: rgba(255,255,255,.04);
+    }
+    .stat .k{ font-size: 12px; color: var(--muted); }
+    .stat .v{ font-size: 16px; font-weight: 700; margin-top: 6px; }
+
+    /* -------------------------
+       TEAM
+    -------------------------- */
+  .teamGrid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+
+  /* kritik kısım: grid alanını ortalar */
+  justify-content: center;
+
+  /* kartların satır içinde düzgün durması */
+  justify-items: stretch;
+}
+    .member{
+      padding: 14px;
+      display:flex;
+      gap: 12px;
+      align-items:center;
+    }
+  .avatar{
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.avatar.large{
+  width: 96px;
+  height: 96px;
+}
+.advisorWrapper{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+.advisorCard{
+  max-width: 520px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: linear-gradient(
+    135deg,
+    rgba(173,36,45,.18),
+    rgba(40,73,148,.18)
+  );
+  border: 1px solid rgba(235,228,225,.22);
+}
+.memberCard{
+  padding: 20px;
+  min-height: 190px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+    .avatar img{
+      width:100%; height:100%;
+      object-fit: cover;
+      display:block;
+    }
+    .memberInfo{ min-width: 0; }
+    .memberInfo strong{
+      display:block;
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .memberInfo span{
+      display:block;
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 2px;
+    }
+    .chipRow{
+      display:flex; flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .chip{
+      font-size: 11px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(235,228,225,.12);
+      background: rgba(255,255,255,.04);
+      color: rgba(235,228,225,.82);
+    }
+
+    /* -------------------------
+       SPONSORS (wave background)
+    -------------------------- */
+    .sponsorWrap{
+      position: relative;
+      overflow:hidden;
+      border-radius: 22px;
+      border: 1px solid rgba(235,228,225,.12);
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadow);
+    }
+    .waves{
+      position:absolute;
+      inset:-40px -80px;
+      opacity: .5;
+      background-image:
+        radial-gradient(900px 380px at 25% 20%, rgba(40,73,148,.22), transparent 60%),
+        radial-gradient(900px 380px at 75% 80%, rgba(173,36,45,.18), transparent 60%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='400' viewBox='0 0 1200 400'%3E%3Cpath d='M0 90 C 180 10, 360 170, 540 90 S 900 170, 1200 90' fill='none' stroke='rgba(235,228,225,0.22)' stroke-width='3'/%3E%3Cpath d='M0 140 C 180 60, 360 220, 540 140 S 900 220, 1200 140' fill='none' stroke='rgba(235,228,225,0.18)' stroke-width='3'/%3E%3Cpath d='M0 190 C 180 110, 360 270, 540 190 S 900 270, 1200 190' fill='none' stroke='rgba(235,228,225,0.14)' stroke-width='3'/%3E%3Cpath d='M0 240 C 180 160, 360 320, 540 240 S 900 320, 1200 240' fill='none' stroke='rgba(235,228,225,0.12)' stroke-width='3'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: cover;
+      filter: blur(.2px);
+      pointer-events:none;
+    }
+    .sponsorInner{
+      position: relative;
+      padding: 26px;
+    }
+    .logoGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+
+    .logoGrid.sponsors-3{
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+/* Kartları biraz daha büyük ve premium yap */
+.logoGrid.sponsors-3 .logoCard{
+  height: 230px;          /* 🔼 önce 150 idi */
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/* Logolar biraz daha büyük görünsün */
+.logoGrid.sponsors-3 .logoCard img{
+  max-width: 65%;
+  max-height: 65%;
+  object-fit: contain;
+}
+
+    .logoCard{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height: 110px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(235,228,225,.12);
+      overflow:hidden;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .logoCard:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.10);
+      border-color: rgba(235,228,225,.20);
+    }
+    .logoCard img{
+      max-width: 78%;
+      max-height: 62%;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
+    }
+    .logoCard{
+      cursor: pointer;
+    }
+    .logoCard:hover{
+      transform: translateY(-2px);
+    }
+
+
+    /* -------------------------
+       MEDIA
+    -------------------------- */
+    .mediaGrid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+    .mediaItem{
+      grid-column: span 4;
+      border-radius: 18px;
+      overflow:hidden;
+      border: 1px solid rgba(235,228,225,.12);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow);
+      min-height: 190px;
+      position: relative;
+    }
+    .mediaItem img{
+      width:100%; height: 100%;
+      object-fit: cover;
+      display:block;
+      filter: contrast(1.02) saturate(1.05);
+    }
+    .mediaItem::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, transparent 55%, rgba(6,6,6,.75));
+      pointer-events:none;
+    }
+    .mediaCaption{
+      position:absolute;
+      left: 12px;
+      bottom: 10px;
+      right: 12px;
+      font-size: 12px;
+      color: rgba(235,228,225,.88);
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items:center;
+    }
+    .badge{
+      font-size: 11px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(235,228,225,.14);
+      background: rgba(255,255,255,.05);
+      color: rgba(235,228,225,.85);
+    }
+
+    /* -------------------------
+       CONTACT
+    -------------------------- */
+    .contactWrap{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+    .panel{
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(235,228,225,.12);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow);
+    }
+    label{
+      display:block;
+      font-size: 12px;
+      color: rgba(235,228,225,.85);
+      margin: 12px 0 6px;
+    }
+    input, textarea{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(235,228,225,.12);
+      background: rgba(6,6,6,.35);
+      color: var(--text);
+      outline:none;
+      transition: box-shadow .2s ease, border-color .2s ease;
+    }
+    textarea{ min-height: 120px; resize: vertical; }
+    input:focus, textarea:focus{
+      border-color: rgba(234,142,49,.45);
+      box-shadow: var(--focus);
+    }
+    .contactMeta p{
+      margin: 0 0 10px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .metaList{
+      display:grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .metaItem{
+      display:flex;
+      align-items:flex-start;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(235,228,225,.10);
+      background: rgba(255,255,255,.04);
+    }
+    .dot{
+      width: 10px; height: 10px;
+      border-radius: 999px;
+      margin-top: 5px;
+      background: linear-gradient(135deg, var(--red), var(--blue));
+      box-shadow: 0 0 0 4px rgba(173,36,45,.10);
+      flex: 0 0 auto;
+    }
+    footer{
+      padding: 26px 0 40px;
+      color: rgba(235,228,225,.60);
+      font-size: 12px;
+    }
+
+    /* -------------------------
+       RESPONSIVE
+    -------------------------- */
+
+@media (max-width: 1200px){
+  .teamGrid{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 900px){
+  .logoGrid.sponsors-3 .logoCard{
+    aspect-ratio: 1 / 1;
+    min-height: 150px;
+  }
+}
+
+
+
+@media (max-width: 768px){
+  .teamGrid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .memberCard{
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px){
+  .teamGrid{
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 900px){
+  .logoGrid.sponsors-3{
+    grid-template-columns: 1fr;
+  }
+
+  .logoGrid.sponsors-3 .logoCard{
+    height: 130px;
+  }
+}
+
+
+
+
+
+
+    @media (max-width: 980px){
+      .heroContent{ grid-template-columns: 1fr; }
+      .navCta{ display:none; }
+      .grid3{ grid-template-columns: repeat(2, 1fr); }
+      .logoGrid{ grid-template-columns: repeat(2, 1fr); }
+      .contactWrap{ grid-template-columns: 1fr; }
+      .mediaItem{ grid-column: span 6; }
+    }
+    @media (max-width: 620px){
+      .navLinks{ gap: 2px; overflow:auto; max-width: 100%; }
+      .navLinks a{ padding: 10px 12px; }
+      .grid3{ grid-template-columns: 1fr; }
+      .logoGrid{ grid-template-columns: 1fr; }
+      .stats{ grid-template-columns: 1fr; }
+      .mediaItem{ grid-column: span 12; }
+      section{ padding: 56px 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .grid{ animation: none; }
+      .navLinks a{ transition: none; }
+      .logoCard{ transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="snow" aria-hidden="true"></canvas>
+
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a class="brand" href="#home" aria-label="Home">
+        <div class="newYearNote">
+          <span>Welcome 2026</span>
+          <small>Detect. Decide. Deliver — forward.</small>
+        </div>
+          <div class="brandMark">
+            <img src="assets/takımlogosu.png" UAV Team Logo">
+          </div>
+          <div class="brandTitle">
+            <strong>CAPELLA</strong>
+            <span>Detect. Decide. Deliver.</span>
+          </div>
+        </a>
+
+        <div class="navLinks" role="navigation" aria-label="Primary">
+          <a href="#home" class="active">Home</a>
+          <a href="#team">Team</a>
+          <a href="#sponsors">Sponsors</a>
+          <a href="#media">Media</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="navCta">
+          <a class="btn" href="#sponsors">Become a Sponsor</a>
+          <a class="btn btnPrimary" href="#contact">Contact Us</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HOME -->
+  <main>
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="heroShell">
+          <!-- Replace video src with your own mp4 -->
+          <video class="heroVideo" autoplay muted loop playsinline>
+            <!-- Örnek: assets/hero.mp4 -->
+            <source src="assets/uavvideo.mp4" type="video/mp4">
+          </video>
+
+          <div class="heroOverlay">
+            <div class="heroContent">
+              <div>
+                
+                
+
+                <div class="stats">
+                  <div class="stat">
+                    <div class="k">Focus</div>
+                    <div class="v">Debris Detection & Aid Deployment</div>
+                  </div>
+                  <div class="stat">
+                    <div class="k">Platform</div>
+                    <div class="v">UAV / SUAS</div>
+                  </div>
+                  <div class="stat">
+                    <div class="k">Technology</div>
+                    <div class="v">Jetson • Computer Vision</div>
+                  </div>
+                </div>
+              </div>
+
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="accentLine" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2 class="sectionTitle">Team</h2>
+            <p class="sectionDesc">Our team is composed of students from diverse engineering backgrounds, collaborating across disciplines to build intelligent and autonomous UAV solutions.</p>
+          </div>
+          
+        </div>
+        <div class="advisorWrapper">
+
+  <div class="card advisorCard">
+    <div class="avatar large">
+      <img src="assets/recepgorguluarslan.png" alt="Faculty Advisor">
+    </div>
+    <div class="memberInfo">
+      <strong>Assoc. Prof. Dr. Recep Görgülüarslan</strong>
+      <span>Faculty Advisor</span>
+      <div class="chipRow">
+        <span class="chip">Guidance</span>
+        <span class="chip">Mechanics Engineering</span>
+        <span class="chip">Mentorship</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+        <div class="teamGrid">
+          <!-- Member 1 -->
+          <div class="card member">
+            <div class="avatar">
+              <img src="assets/serhatugurlu.jpeg" alt="Team member 1">
+            </div>
+            <div class="memberInfo">
+              <strong>Serhat Uğurlu</strong>
+              <span>Team Lead • Autonomy</span>
+              <div class="chipRow">
+                <span class="chip">CV</span><span class="chip">ROS</span><span class="chip">Mission</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 2 -->
+          <div class="card member">
+            <div class="avatar">
+              <img src="assets/salimerenkaya.png" alt="Team member 2">
+            </div>
+            <div class="memberInfo">
+              <strong>Salim Eren Kaya</strong>
+              <span>Avionics • Power</span>
+              <div class="chipRow">
+                <span class="chip">PCB</span><span class="chip">EMI</span><span class="chip">Power</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 3 -->
+          <div class="card member">
+            <div class="avatar">
+              <img src="assets/musaerenaydogmus.png" alt="Team member 3">
+            </div>
+            <div class="memberInfo">
+              <strong>Musa Eren Aydoğmuş</strong>
+              <span>Mechanics • Airframe</span>
+              <div class="chipRow">
+                <span class="chip">CAD</span><span class="chip">CFD</span><span class="chip">Manufacturing</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 4 -->
+          <div class="card member">
+            <div class="avatar">
+              <img src="assets/mustafaozturk.jpg" alt="Team member 4">
+            </div>
+            <div class="memberInfo">
+              <strong>Mustafa Öztürk</strong>
+              <span>Comms • Telemetry</span>
+              <div class="chipRow">
+                <span class="chip">UART</span><span class="chip">RF</span><span class="chip">Link Budget</span>
+              </div>
+            </div>
+          </div>
+
+
+          
+
+       
+           <!-- Member 6 -->
+          <div class="card member">
+            <div class="avatar">
+              <img src="assets/hamzaboyraz.jpg" alt="Team member 6">
+            </div>
+            <div class="memberInfo">
+              <strong>Hamza Boyraz</strong>
+              <span>Perception • AI</span>
+              <div class="chipRow">
+                <span class="chip">Mapping</span><span class="chip">Tracking</span><span class="chip">Jetson</span>
+              </div>
+            </div>
+          </div>
+          <!-- Member 7 -->
+          <div class="card member">
+            <div class="avatar">
+              <img src="assets/beraattas.jpg" alt="Team member 7">
+            </div>
+            <div class="memberInfo">
+              <strong>Beraat Taş</strong>
+              <span>Mechanics • Airframe</span>
+              <div class="chipRow">
+                <span class="chip">CFD</span><span class="chip">Manufacturing</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 8 -->
+          <div class="card member">
+            <div class="avatar">
+              <img src="assets/metehancelik.png" alt="Team member 8">
+            </div>
+            <div class="memberInfo">
+              <strong>Metehan Çelik</strong>
+              <span>Intern</span>
+              <div class="chipRow">
+                <span class="chip">Manufacturing</span>
+              </div>
+            </div>
+          </div>
+         <!-- Member 9 --> 
+          <div class="card member">
+            <div class="avatar">
+              <img src="assets/mehmetemresisman.jpg" alt="Team member 9">
+            </div>
+            <div class="memberInfo">
+              <strong>Mehmet Emre Şişman</strong>
+              <span>Avionics • Telemetry</span>
+              <div class="chipRow">
+                <span class="chip">GroundControl</span><span class="chip">Tracking</span><span class="chip">System Algorithms</span>
+              </div>
+            </div>
+          </div>
+              <!-- Member 9 -->
+          <div class="card member">
+            <div class="avatar">
+              <img src="assets/ensarbas.jpeg" alt="Team member 9">
+            </div>
+            <div class="memberInfo">
+              <strong>Eyüp Ensar Baş</strong>
+              <span>Intern</span>
+              <div class="chipRow">
+                <span class="chip">Social Media</span><span class="chip">Sponsorship</span><span class="chip">PR</span>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+          <!-- Member 10 -->
+          <div class="card member">
+            <div class="avatar">
+              <img src="assets/Aliefecavusculu.jpg" alt="Team member 6">
+            </div>
+            <div class="memberInfo">
+              <strong>Ali Efe Çavuşculu</strong>
+              <span>Ops • Media</span>
+              <div class="chipRow">
+                <span class="chip">PR</span><span class="chip">Sponsorship</span><span class="chip">Content</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  <!-- MISSION & VISION -->
+<section id="mission">
+  <div class="container">
+    <div class="sectionHead sectionHeadCenter">
+      <div>
+        <h2 class="sectionTitle">Mission & Vision</h2>
+      </div>
+    </div>
+
+    <div class="mvGrid">
+      <!-- Mission -->
+      <div class="card mvCard">
+        <div class="mvTop">
+          <div class="mvIcon mvIconMission" aria-hidden="true">⟡</div>
+          <h3 class="mvTitle">Mission</h3>
+        </div>
+        <p class="mvText">
+          We develop intelligent UAV systems that can detect and locate victims and critical assets in disaster scenarios,
+          then deliver the right aid payload safely and precisely. By combining autonomy, avionics, perception, and robust
+          system engineering, we aim to turn real-world constraints into reliable mission performance.
+        </p>
+      </div>
+
+      <!-- Vision -->
+      <div class="card mvCard">
+        <div class="mvTop">
+          <div class="mvIcon mvIconVision" aria-hidden="true">◎</div>
+          <h3 class="mvTitle">Vision</h3>
+        </div>
+        <p class="mvText">
+          To become a leading student UAV team known for practical autonomy, dependable engineering, and meaningful impact—
+          building aerial systems that support search & rescue, humanitarian logistics, and time-critical operations.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>  
+
+    <!-- SPONSORS -->
+    <section id="sponsors">
+      <div class="container">
+        <div class="sectionHead sponsorsHead">
+          <h2 class="sectionTitle">Sponsors</h2>
+        </div>
+
+        <div class="sponsorWrap">
+          <div class="waves" aria-hidden="true"></div>
+          <div class="sponsorInner">
+            <div class="logoGrid sponsors-3">
+
+
+
+
+
+
+            <a class="logoCard"
+              href="https://ozbensavunma.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Özben Savunma website">
+              <img src="assets/ozbenlogo.png" alt="Özben Savunma logo">
+            </a>
+
+
+               <a class="logoCard"
+                href="https://specsoninstruments.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Sponsor 2 website">
+                <img src="assets/specsonlogo.png" alt="Sponsor 2 logo">
+              </a>
+
+
+
+
+              <a class="logoCard"
+              href="https://www.gumusova.bel.tr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Gümüşova Belediyesi website">
+              <img src="assets/gumusovalogo.png" alt="Gümüşova Belediyesi logo">
+            </a>
+
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEDIA -->
+    <section id="media">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2 class="sectionTitle">Media</h2>
+          </div>
+         
+        </div>
+
+        <div class="mediaGrid">
+          <div class="mediaItem">
+            <img src="assets/atolyegunlugu.jpeg" alt="Media 1">
+            <div class="mediaCaption"><span>Workshop</span><span class="badge">Photo</span></div>
+          </div>
+          <div class="mediaItem">
+            <img src="assets/atolyegunlugu2.jpeg" alt="Media 2">
+            <div class="mediaCaption"><span>Workshop</span><span class="badge">Photo</span></div>
+          </div>
+          <div class="mediaItem">
+            <img src="assets/atolyegunlugu3.jpeg" alt="Media 3">
+            <div class="mediaCaption"><span>Workshop</span><span class="badge">Photo</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2 class="sectionTitle">Contact</h2>
+            <p class="sectionDesc"> Have a question, partnership idea, or sponsorship inquiry? Feel free to reach out — we’ll get back to you as soon as possible.</p>
+          </div>
+          
+        </div>
+
+        <div class="contactWrap">
+          <div class="panel">
+            <form id="contactForm" action="https://formspree.io/f/xgowzeod" method="POST">
+              <label for="name">Name</label>
+              <input id="name" name="name" placeholder="Name Surname" required>
+
+              <label for="email">E-mail</label>
+              <input id="email" name="email" type="email" placeholder="name@email.com" required>
+
+              <label for="msg">Message</label>
+              <textarea id="msg" name="msg" placeholder="Write your message..." required></textarea>
+
+              <div style="display:flex; gap:10px; margin-top: 14px; align-items:center; flex-wrap:wrap;">
+                <button class="btn btnPrimary" type="submit">Gönder</button>
+                <span id="formNote" style="color: rgba(235,228,225,.70); font-size: 12px;"></span>
+              </div>
+            </form>
+          </div>
+
+          <div class="panel contactMeta">
+            <p>
+            For sponsorships, media, and collaborations, feel free to reach out anytime.
+            You can also find our social links below.
+            </p>
+
+            <div class="metaList">
+
+              <div class="metaItem">
+      <div class="dot"></div>
+      <div>
+        <div style="font-weight:700;">E-mail</div>
+        <a
+          href="mailto:serhatomerugurlu@etu.edu.tr"
+          style="color: rgba(235,228,225,.70); font-size: 13px; text-decoration: none;"
+        >
+          serhatomerugurlu@etu.edu.tr
+        </a>
+      </div>
+    </div>
+    
+
+              <div class="metaItem">
+      <div class="dot"></div>
+      <div>
+        <div style="font-weight:700;">Location</div>
+        <a
+          href="https://maps.google.com/?q=TOBB+Ekonomi+ve+Teknoloji+Üniversitesi"
+          target="_blank"
+          rel="noopener"
+          style="color: rgba(235,228,225,.70); font-size: 13px; text-decoration: none;"
+        >
+          TOBB University of Economics and Technology<br>
+          Ankara, Türkiye
+        </a>
+      </div>
+    </div>
+              <div class="metaItem">
+      <div class="dot"></div>
+      <div>
+        <div style="font-weight:700;">Social</div>
+        <div style="color: rgba(235,228,225,.70); font-size: 13px;">
+          <a href="https://www.instagram.com/capellateknoloji?igsh=d2lhNTF6ZzFycnB1&utm_source=qr" target="_blank" rel="noopener" style="color: rgba(235,228,225,.70); text-decoration:none;">Instagram</a>
+          <span> • </span>
+          <a href="https://www.linkedin.com/company/capella-teknoloji/" target="_blank" rel="noopener" style="color: rgba(235,228,225,.70); text-decoration:none;">LinkedIn</a>
+          <span> • </span>
+          <a href="https://www.youtube.com/channel/UC6uoEwjNwGtGzvQuisXs70w" target="_blank" rel="noopener" style="color: rgba(235,228,225,.70); text-decoration:none;">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+         
+
+        <footer class="container">
+          © <span id="year"></span> Capella Technology
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Smooth scroll + active link (scroll spy)
+    const links = [...document.querySelectorAll('.navLinks a')];
+    const sections = links.map(a => document.querySelector(a.getAttribute('href')));
+
+    function setActive(id){
+      links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+    }
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) setActive(e.target.id);
+      });
+    }, { root: null, threshold: 0.55 });
+
+    sections.forEach(s => s && obs.observe(s));
+
+    links.forEach(a => {
+      a.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (!target) return;
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', a.getAttribute('href'));
+      });
+    });
+
+  
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+     // ===== Soft Snow Particles (low density, smooth) =====
+  (function snowParticles(){
+    const canvas = document.getElementById('snow');
+    if(!canvas) return;
+
+    const ctx = canvas.getContext('2d', { alpha: true });
+    let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    // Tweakables
+    const cfg = {
+      density: 0.00009,  // ekran alanına göre adet (az yoğun)
+      minR: 0.8,
+      maxR: 2.6,
+      minV: 0.25,
+      maxV: 0.90,
+      wind: 0.12,        // sağa hafif kayma
+      wobble: 0.35       // sağa sola salınım
+    };
+
+    let particles = [];
+    let lastT = performance.now();
+
+    function resize(){
+      w = Math.floor(window.innerWidth);
+      h = Math.floor(window.innerHeight);
+
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      // particle count ~ area
+      const target = Math.max(50, Math.min(180, Math.floor(w * h * cfg.density)));
+      particles = new Array(target).fill(0).map(() => spawn(Math.random() * w, Math.random() * h, true));
+    }
+
+    function rand(a,b){ return a + Math.random() * (b - a); }
+
+    function spawn(x, y, randomY=false){
+      const r = rand(cfg.minR, cfg.maxR);
+      return {
+        x: x ?? rand(0, w),
+        y: randomY ? rand(0, h) : (y ?? -r - 2),
+        r,
+        vy: rand(cfg.minV, cfg.maxV) * (0.6 + r / cfg.maxR), // büyükler biraz daha hızlı
+        phase: rand(0, Math.PI * 2),
+        wob: rand(0.4, 1.2),
+        alpha: rand(0.35, 0.85)
+      };
+    }
+
+    function step(now){
+      const dt = Math.min(0.032, (now - lastT) / 1000); // clamp
+      lastT = now;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // draw
+      ctx.fillStyle = '#ffffff';
+      for(let i=0; i<particles.length; i++){
+        const p = particles[i];
+
+        p.phase += dt * 1.2 * p.wob;
+        p.y += p.vy * 60 * dt;
+
+        // gentle wind + wobble
+        p.x += (cfg.wind * 60 * dt) + Math.sin(p.phase) * cfg.wobble;
+
+        // wrap
+        if(p.y > h + p.r + 6) particles[i] = spawn(rand(0,w), -p.r - 6);
+        if(p.x < -20) p.x = w + 20;
+        if(p.x > w + 20) p.x = -20;
+
+        ctx.globalAlpha = p.alpha;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+
+      requestAnimationFrame(step);
+    }
+
+    window.addEventListener('resize', resize, { passive: true });
+    resize();
+    requestAnimationFrame(step);
+  })();
+
+  const form = document.getElementById("contactForm");
+  const note = document.getElementById("formNote");
+
+  if(form){
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      note.textContent = "Sending...";
+      try{
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { "Accept": "application/json" }
+        });
+
+        if(res.ok){
+          note.textContent = "Thanks! Your message has been sent.";
+          form.reset();
+        } else {
+          note.textContent = "Oops — something went wrong. Please try again.";
+        }
+      } catch(err){
+        note.textContent = "Network error. Please try again.";
+      }
+
+      setTimeout(() => note.textContent = "", 3500);
+    });
+  }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+</html>
